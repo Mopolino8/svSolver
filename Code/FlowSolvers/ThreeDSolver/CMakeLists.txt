@@ -58,7 +58,9 @@ endif()
 #-----------------------------------------------------------------------------
 # Dummy MPI
 #-----------------------------------------------------------------------------
-if(SV_USE_DUMMY_MPI)
+#if(SV_USE_DUMMY_MPI)
+# turning off dummy mpi for now 
+if(0)
   set(FLOWSOLVER_SUBDIRS ${FLOWSOLVER_SUBDIRS} dummyMPI)
 endif()
 
@@ -66,6 +68,12 @@ endif()
 # svSolver
 #-----------------------------------------------------------------------------
 set(FLOWSOLVER_SUBDIRS ${FLOWSOLVER_SUBDIRS} svSolver)
+
+#-----------------------------------------------------------------------------
+# svFSI
+#-----------------------------------------------------------------------------
+set(FLOWSOLVER_SUBDIRS ${FLOWSOLVER_SUBDIRS} svFSI)
+
 
 #-----------------------------------------------------------------------------
 # Optional header path
@@ -109,7 +117,8 @@ endforeach()
 
 #-----------------------------------------------------------------------------
 # Special option to also build a no mpi version!!
-if(NOT SV_USE_DUMMY_MPI)
+#if(NOT SV_USE_DUMMY_MPI)
+if(0)
   if(SV_BUILD_ADDITIONAL_NOMPI_VERSION)
     set(SV_USE_DUMMY_MPI ON)
     set(SV_MPI_NAME_EXT "-nompi")
