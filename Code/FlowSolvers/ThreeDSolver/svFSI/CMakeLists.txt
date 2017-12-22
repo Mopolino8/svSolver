@@ -28,27 +28,36 @@
  #
  #=========================================================================#
 
-if(MSVC)
-  string(REGEX REPLACE "STACK:10000000,10000000" "STACK:512000000,512000000" CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS}")
-endif()
+#if(MSVC)
+#  string(REGEX REPLACE "STACK:10000000,10000000" "STACK:512000000,512000000" CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS}")
+#endif()
 
-# set(SV_SVFSI_EXE "svFSI")
+message("CMAKE_Fortran_IMPLICIT_LINK_LIBRARIES = " ${CMAKE_Fortran_IMPLICIT_LINK_LIBRARIES})
+#unset(CMAKE_Fortran_IMPLICIT_LINK_LIBRARIES)
+message("CMAKE_Fortran_IMPLICIT_LINK_LIBRARIES = " ${CMAKE_Fortran_IMPLICIT_LINK_LIBRARIES})
 
-#set(FSRCS hello.f)
-set(CSRCS hello_mpi.c)
+message("CMAKE_EXE_LINKER_FLAGS = " ${CMAKE_EXE_LINKER_FLAGS})
+
+# executable variable is named
+# SV_SVFSI_EXE
+
+set(FSRCS ring_mpi.f)
+#set(CSRCS hello_mpi.c)
 
 simvascular_add_executable(${SV_SVFSI_EXE}
-  SRCS ${CSRCS}
-  #SRCS ${FSRCS}
+  #SRCS ${CSRCS}
+  SRCS ${FSRCS}
   DEV_SCRIPT_NAME "mysvfsi"
   INSTALL_SCRIPT_NAME "svfsi"
   INSTALL_COMP CoreExecutables
   INSTALL_DESTINATION ${SV_INSTALL_RUNTIME_DIR})
 
+# hardcoded to include MPI here, so MPI is required until updated
 target_link_libraries(${SV_SVFSI_EXE}
   ${GLOBAL_LIBRARIES}
   ${INTELRUNTIME_LIBRARIES}
   ${ZLIB_LIBRARY}
   ${SV_MPI_EXTRA_LIBRARY}
-  ${SV_MPI_Fortran_LIBRARIES})
+  ${SV_MPI_Fortran_LIBRARIES}
+  )
 

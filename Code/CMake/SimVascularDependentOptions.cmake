@@ -70,7 +70,8 @@ if(CMAKE_COMPILER_IS_GNUCXX)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fpermissive")
   set(GLOBAL_DEFINES "${GLOBAL_DEFINES} -DGCC")
 endif()
-set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -pthread -static")
+#set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -pthread -static")
+set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -pthread")
 
 #-----------------------------------------------------------------------------
 # Set a default build type (if none was specified)
