@@ -28,15 +28,6 @@
  #
  #=========================================================================#
 
-#if(MSVC)
-#  string(REGEX REPLACE "STACK:10000000,10000000" "STACK:512000000,512000000" CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS}")
-#endif()
-
-message("CMAKE_Fortran_IMPLICIT_LINK_LIBRARIES = " ${CMAKE_Fortran_IMPLICIT_LINK_LIBRARIES})
-#unset(CMAKE_Fortran_IMPLICIT_LINK_LIBRARIES)
-message("CMAKE_Fortran_IMPLICIT_LINK_LIBRARIES = " ${CMAKE_Fortran_IMPLICIT_LINK_LIBRARIES})
-
-message("CMAKE_EXE_LINKER_FLAGS = " ${CMAKE_EXE_LINKER_FLAGS})
 
 # executable variable is named
 # SV_SVFSI_EXE
@@ -57,6 +48,7 @@ target_link_libraries(${SV_SVFSI_EXE}
   ${GLOBAL_LIBRARIES}
   ${INTELRUNTIME_LIBRARIES}
   ${ZLIB_LIBRARY}
+  ${METIS_SVFSI_LIBRARY_NAME}
   ${SV_MPI_EXTRA_LIBRARY}
   ${SV_MPI_Fortran_LIBRARIES}
   )

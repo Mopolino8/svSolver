@@ -176,6 +176,10 @@ macro(simvascular_third_party _pkg)
 
   mark_as_advanced(SV_USE_SYSTEM_${_upper})
 
+  message("SV_SOURCE_DIR = " ${SV_SOURCE_DIR})
+  message("${${_upper}_SUBDIR} = " ${${_upper}_SUBDIR})
+  message("simvascular_${_lower}.h.in = " "simvascular_"${_lower}".h.in")
+
   configure_file(${SV_SOURCE_DIR}/${${_upper}_SUBDIR}/simvascular_${_lower}.h.in
     ${SV_BINARY_DIR}/${${_upper}_SUBDIR}/simvascular_${_lower}.h)
   include_directories(BEFORE ${SV_BINARY_DIR}/${${_upper}_SUBDIR} ${SV_SOURCE_DIR}/${${_upper}_SUBDIR})

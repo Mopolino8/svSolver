@@ -67,6 +67,8 @@ option(SV_USE_CLOSEDLOOP "" ON)
 option(SV_USE_VARWALL "" ON)
 option(SV_USE_SPARSE "Use sparse Library" ON)
 option(SV_USE_METIS "Use metis Library" ON)
+option(SV_USE_METIS_SVFSI "Use metis_svfsi Library" ON)
+message("just set SV_USE_METIS_SVFSI = " ${SV_USE_METIS_SVFSI})
 option(SV_USE_NSPCG "Use nspcg Library" ON)
 #-----------------------------------------------------------------------------
 

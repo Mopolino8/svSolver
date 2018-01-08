@@ -48,3 +48,20 @@ if(SV_USE_NSPCG)
   endif()
 endif()
 
+
+#-----------------------------------------------------------------------------
+# METIS
+if(SV_USE_METIS_SVFSI)
+  set(USE_METIS_SVFSI ON)
+  message("to third party call")
+  simvascular_third_party(metis_svfsi)
+  message("third party call passed")
+  #if(NOT SV_USE_SYSTEM_METIS_SVFSI)
+
+  # require to be built here 
+  set(METIS_SVFSI_LIBRARY ${SV_LIB_THIRDPARTY_METIS_SVFSI_NAME})
+  #else()
+  #  find_package(METIS_SVFSI)
+  #endif()
+endif()
+
