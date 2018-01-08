@@ -1,8 +1,4 @@
 cmake_minimum_required(VERSION 2.8.8)
-project(METIS_SVFSI)
-if (NOT METIS_SVFSI_LIBRARY_NAME)
-  set(METIS_SVFSI_LIBRARY_NAME metis_svfsi)
-endif()
 
 if (NOT PARMETIS_SVFSI_LIBRARY_NAME)
   set(PARMETIS_SVFSI_LIBRARY_NAME parmetis_svfsi)
@@ -23,6 +19,4 @@ if(WIN32)
   add_definitions("-DWINDOWS")
 endif()
 
-add_subdirectory(METISLib)
-
-# add_subdirectory(ParMETISLib)
+add_subdirectory(ParMETISLib)

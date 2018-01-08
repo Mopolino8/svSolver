@@ -65,3 +65,19 @@ if(SV_USE_METIS_SVFSI)
   #endif()
 endif()
 
+
+#-----------------------------------------------------------------------------
+# PARMETIS
+if(SV_USE_PARMETIS_SVFSI)
+  set(USE_PARMETIS_SVFSI ON)
+  message("to third party call")
+  simvascular_third_party(parmetis_svfsi)
+  message("third party call passed")
+  #if(NOT SV_USE_SYSTEM_METIS_SVFSI)
+
+  # require to be built here 
+  set(PARMETIS_SVFSI_LIBRARY ${SV_LIB_THIRDPARTY_PARMETIS_SVFSI_NAME})
+  #else()
+  #  find_package(PARMETIS_SVFSI)
+  #endif()
+endif()
