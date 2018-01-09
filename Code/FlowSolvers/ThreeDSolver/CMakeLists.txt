@@ -32,6 +32,8 @@ set(INDENTS "${INDENTS}    ")
 
 set(FLOWSOLVER_SUBDIRS ${FLOWSOLVER_SUBDIRS} svLS)
 
+set(FLOWSOLVER_SUBDIRS ${FLOWSOLVER_SUBDIRS} svMemLS)
+
 #-----------------------------------------------------------------------------
 # Post Solver
 #-----------------------------------------------------------------------------
@@ -124,6 +126,7 @@ if(0)
     set(SV_MPI_NAME_EXT "-nompi")
     add_subdirectory(dummyMPI)
     add_subdirectory(svLS svLS${SV_MPI_NAME_EXT})
+#     add_subdirectory(svMemLS svMemLS${SV_MPI_NAME_EXT})
     add_subdirectory(svSolver svSolver${SV_MPI_NAME_EXT})
     set(SV_USE_DUMMY_MPI OFF)
   endif()
