@@ -97,6 +97,13 @@ if(SV_USE_SVLS)
 endif()
 set(SVLS_BUILD_TYPE "Source")
 
+option(SV_USE_SVMEMLS "Use svMemLS as an additional linear solver" ON )
+message("In options, SV_USE_SVMEMLS = " ${SV_USE_SVMEMLS})
+if(SV_USE_SVMEMLS)
+  set(USE_SVMEMLS 1)
+endif()
+set(SVLS_BUILD_TYPE "Source")
+
 option(SV_USE_LESLIB "Use leslib as linear solver" OFF )
 if(SV_USE_LESLIB)
   set(SV_USE_LESLIB 1)

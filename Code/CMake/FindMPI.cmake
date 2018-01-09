@@ -525,8 +525,8 @@ set(MPIEXEC_MAX_NUMPROCS "2"   CACHE STRING "Maximum number of processors availa
 mark_as_advanced(MPIEXEC MPIEXEC_NUMPROC_FLAG MPIEXEC_PREFLAGS MPIEXEC_POSTFLAGS MPIEXEC_MAX_NUMPROCS)
 
 #set(MPI_EXTRA_LIBRARY "/usr/local/Cellar/open-mpi/3.0.0/lib/libmpi.dylib")
-message("1 in find MPI, MPI_LIBRARY = " ${MPI_LIBRARY})
-message("1 in find MPI, MPI_EXTRA_LIBRARY = " ${MPI_EXTRA_LIBRARY})
+# message("1 in find MPI, MPI_LIBRARY = " ${MPI_LIBRARY})
+# message("1 in find MPI, MPI_EXTRA_LIBRARY = " ${MPI_EXTRA_LIBRARY})
 #=============================================================================
 # Backward compatibility input hacks.  Propagate the FindMPI hints to C and
 # CXX if the respective new versions are not defined.  Translate the old
@@ -553,8 +553,8 @@ foreach (lang C CXX)
 endforeach()
 #=============================================================================
 
-message("after initial in find MPI, MPI_LIBRARY = " ${MPI_LIBRARY})
-message("after initial in find MPI, MPI_EXTRA_LIBRARY = " ${MPI_EXTRA_LIBRARY})
+# message("after initial in find MPI, MPI_LIBRARY = " ${MPI_LIBRARY})
+# message("after initial in find MPI, MPI_EXTRA_LIBRARY = " ${MPI_EXTRA_LIBRARY})
 
 
 # This loop finds the compilers and sends them off for interrogation.
@@ -624,18 +624,18 @@ else()
   set(MPI_LIBRARY "MPI_LIBRARY-NOTFOUND" CACHE FILEPATH "MPI library to link against" FORCE)
 endif()
 
-message("before in \\if (MPI_NUMLIBS GREATER 1)\\ in find MPI, MPI_LIBRARY = " ${MPI_LIBRARY})
-message("before in \\if (MPI_NUMLIBS GREATER 1)\\ in find MPI, MPI_EXTRA_LIBRARY = " ${MPI_EXTRA_LIBRARY})
+# message("before in \\if (MPI_NUMLIBS GREATER 1)\\ in find MPI, MPI_LIBRARY = " ${MPI_LIBRARY})
+# message("before in \\if (MPI_NUMLIBS GREATER 1)\\ in find MPI, MPI_EXTRA_LIBRARY = " ${MPI_EXTRA_LIBRARY})
 
 
 list(LENGTH MPI_LIBRARIES MPI_NUMLIBS)
-message("MPI_NUMLIBS = " ${MPI_NUMLIBS})
+# message("MPI_NUMLIBS = " ${MPI_NUMLIBS})
 if (MPI_NUMLIBS GREATER 1)
   set(MPI_EXTRA_LIBRARY_WORK ${MPI_LIBRARIES})
   list(REMOVE_AT MPI_EXTRA_LIBRARY_WORK 0)
   set(MPI_EXTRA_LIBRARY ${MPI_EXTRA_LIBRARY_WORK} CACHE STRING "Extra MPI libraries to link against" FORCE)
 else()
-  message("in \\if (MPI_NUMLIBS GREATER 1)\\ else clause")
+  # message("in \\if (MPI_NUMLIBS GREATER 1)\\ else clause")
   set(MPI_EXTRA_LIBRARY "" CACHE STRING "Extra MPI libraries to link against" FORCE)
   # set(MPI_EXTRA_LIBRARY "MPI_EXTRA_LIBRARY-NOTFOUND" CACHE STRING "Extra MPI libraries to link against" FORCE)
 endif()
@@ -651,7 +651,7 @@ foreach (lang C CXX Fortran)
   unset(_MPI_${lang}_COMPILER_NAMES)
 endforeach()
 
-message("end in find MPI, MPI_LIBRARY = " ${MPI_LIBRARY})
-message("end in find MPI, MPI_EXTRA_LIBRARY = " ${MPI_EXTRA_LIBRARY})
+# message("end in find MPI, MPI_LIBRARY = " ${MPI_LIBRARY})
+# message("end in find MPI, MPI_EXTRA_LIBRARY = " ${MPI_EXTRA_LIBRARY})
 
 

@@ -1,3 +1,5 @@
+message("SV_LIB_SVLS_NAME = " ${SV_LIB_SVLS_NAME})
+
 set(lib ${SV_LIB_SVLS_NAME}${SV_MPI_NAME_EXT})
 
 set(FSRCS ADDBCMUL.f

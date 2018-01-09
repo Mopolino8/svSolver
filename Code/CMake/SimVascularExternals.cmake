@@ -75,6 +75,15 @@ if(SV_USE_SVLS)
   set(SV_USE_MPI ON)
 endif()
 
+# svMemLS
+message("In externals, SV_USE_SVMEMLS = " ${SV_USE_SVMEMLS})
+if(SV_USE_SVMEMLS)
+  set(SVMEMLS_BUILD_TYPE "Source")
+  
+  # turn this switch off, should likely be handled above 
+  # set(SV_USE_MPI ON)
+endif()
+
 if(SV_USE_LESLIB)
   find_package(LESLIB REQUIRED)
 endif()
