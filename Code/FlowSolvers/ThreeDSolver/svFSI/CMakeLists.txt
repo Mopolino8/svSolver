@@ -29,15 +29,72 @@
  #=========================================================================#
 
 
-# executable variable is named
+# executable variable is named in the variable 
 # SV_SVFSI_EXE
 
-set(FSRCS ring_mpi.f)
-#set(CSRCS hello_mpi.c)
+# this uses fixed-form fortran
+# so need to reset the flags 
+# set(CMAKE_Fortran_FLAGS "-ffixed-form -cpp -pthread")
+
+set(CMAKE_Fortran_FLAGS "-cpp -pthread")
+
+set(FSRCS UTIL.f 
+         COMU.f 
+         CHNL.f 
+         LIST.f 
+         MOD.f 
+         MATFUN.f 
+         ALLFUN.f 
+         BBO.f 
+         BAFINI.f 
+         CONSTRUCT.f 
+         DISTRIBUTE.f 
+         FFT.f 
+         FLUID.f 
+         HEAT.f 
+         INITIALIZE.f 
+         LELAS.f 
+         LHSA.f 
+         LOADMSH.f 
+         LOADNRB.f 
+         MAIN.f 
+         MATMODELS.f 
+         NN.f 
+         NURBS.f 
+         OUTPUT.f 
+         PIC.f 
+         POST.f 
+         READFILES.f 
+         READMSH.f 
+         REMESH.f
+         SETBC.f 
+         STRUCT.f 
+         TXT.f 
+         VTKXML.f) 
+
+
+set(F90SRCS vtkComMod.f90
+         vtkTypeParams.f90
+         vtkXMLParser.f90
+         vtkLegacyParser.f90)
+# set_source_files_properties(vtkTypeParams.f90 PROPERTIES COMPILE_FLAGS "-ffixed-line-length-132 -cpp -pthread")
+
+
+
+# try this if problems with f90 
+# F90SRCS
+
+set(CSRCS vtkZpipe.c)
+
+set(CXXSRCS remeshTet.cpp 
+            remeshSim.cpp)
+
 
 simvascular_add_executable(${SV_SVFSI_EXE}
-  #SRCS ${CSRCS}
   SRCS ${FSRCS}
+  SRCS ${F90SRCS}
+  SRCS ${CSRCS}
+  SRCS ${CXXSRCS}
   DEV_SCRIPT_NAME "mysvfsi"
   INSTALL_SCRIPT_NAME "svfsi"
   INSTALL_COMP CoreExecutables
