@@ -33,7 +33,7 @@
 
 # hardcoded to build, update if want to allow system version
 # check paths on this, this shuold maybe be 
-#include <simvascular_metis/ParMETISLib/parmetislib.h>
+#include <simvascular_parmetis_svfsi/ParMETISLib/parmetis.h>
 
 #endif
 

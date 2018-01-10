@@ -32,8 +32,16 @@
 # executable variable is named in the variable 
 # SV_SVFSI_EXE
 
-# this uses fixed-form fortran
-# so need to reset the flags 
+message("In svfsi...")
+message("SV_INCLUDE_DIRS = " ${SV_INCLUDE_DIRS})
+set(SV_INCLUDE_DIRS ${SV_INCLUDE_DIRS} " ThirdParty/parmetis_svfsi/simvascular_parmetis_svfsi/ParMETISLib")
+message("SV_INCLUDE_DIRS = " ${SV_INCLUDE_DIRS})
+
+include_directories(${SV_SOURCE_DIR}/ThirdParty/parmetis_svfsi/simvascular_parmetis_svfsi/ParMETISLib)
+
+
+# gfotran will pick this by -ffixed-form or not as needed, by default
+# so do not set any format flags 
 # set(CMAKE_Fortran_FLAGS "-ffixed-form -cpp -pthread")
 
 set(CMAKE_Fortran_FLAGS "-cpp -pthread")
@@ -84,30 +92,37 @@ set(F90SRCS vtkComMod.f90
 # try this if problems with f90 
 # F90SRCS
 
-set(CSRCS vtkZpipe.c)
+set(CSRCS split.c 
+          vtkZpipe.c)
 
 set(CXXSRCS remeshTet.cpp 
             remeshSim.cpp)
 
 
 simvascular_add_executable(${SV_SVFSI_EXE}
-  SRCS ${FSRCS}
-  SRCS ${F90SRCS}
   SRCS ${CSRCS}
   SRCS ${CXXSRCS}
+  SRCS ${FSRCS}
+  SRCS ${F90SRCS}
   DEV_SCRIPT_NAME "mysvfsi"
   INSTALL_SCRIPT_NAME "svfsi"
   INSTALL_COMP CoreExecutables
   INSTALL_DESTINATION ${SV_INSTALL_RUNTIME_DIR})
+
+set(LINKER_FLAGS_LOCAL_SVFSI "-lblas -llapack -lc++ -lz")
+
+message("before linker add in svFSI, SV_LIB_SVMEMLS_NAME = " ${SV_LIB_SVMEMLS_NAME})
 
 # hardcoded to include MPI here, so MPI is required until updated
 target_link_libraries(${SV_SVFSI_EXE}
   ${GLOBAL_LIBRARIES}
   ${INTELRUNTIME_LIBRARIES}
   ${ZLIB_LIBRARY}
+  ${LINKER_FLAGS_LOCAL_SVFSI} 
   ${METIS_SVFSI_LIBRARY_NAME}
   ${PARMETIS_SVFSI_LIBRARY_NAME}
   ${SV_MPI_EXTRA_LIBRARY}
   ${SV_MPI_Fortran_LIBRARIES}
+  ${SV_LIB_SVMEMLS_NAME}
   )
 

@@ -16,18 +16,18 @@
 #define	DMALLOC		1
 */
 
-#include <stdheaders.h>
+#include <metis_svfsi_stdheaders.h>
 
 #ifdef DMALLOC
 #include <dmalloc.h>
 #endif
 
 // moved this to metis_svfsi directory 
-// #include "../parmetis.h"  /* Get the idxtype definition */
-#include <parmetis.h>  /* Get the idxtype definition */
-#include <defs.h>
-#include <struct.h>
-#include <macros.h>
-#include <rename.h>
-#include <proto.h>
+// #include "../metis_svfsi_parmetis.h"  /* Get the idxtype definition */
+#include <metis_svfsi_parmetis.h>  /* Get the idxtype definition */
+#include <metis_svfsi_defs.h>
+#include <metis_svfsi_struct.h>
+#include <metis_svfsi_macros.h>
+#include <metis_svfsi_rename.h>
+#include <metis_svfsi_proto.h>
 

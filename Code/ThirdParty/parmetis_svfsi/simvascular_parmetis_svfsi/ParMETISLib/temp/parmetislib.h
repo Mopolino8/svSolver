@@ -16,19 +16,19 @@
 #define DMALLOC			1
 */
 
-#include <stdheaders.h>
+#include <parmetis_svfsi_stdheaders.h>
 
 // updated to place in current directory
-#include <parmetis.h>
-// #include "../parmetis.h"
+#include <parmetis_svfsi_parmetis.h>
+// #include "../parmetis_svfsi_parmetis.h"
 
 #ifdef DMALLOC
 #include <dmalloc.h>
 #endif
 
-#include <rename.h>
-#include <defs.h>
-#include <struct.h>
-#include <macros.h>
-#include <proto.h>
+#include <parmetis_svfsi_rename.h>
+#include <parmetis_svfsi_defs.h>
+#include <parmetis_svfsi_struct.h>
+#include <parmetis_svfsi_macros.h>
+#include <parmetis_svfsi_proto.h>
 

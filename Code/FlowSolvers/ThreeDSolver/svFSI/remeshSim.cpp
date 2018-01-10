@@ -26,6 +26,8 @@ extern"C" {
    void remesh3d_meshsim_(const int* nPoints, const int* nFacets, const double* pointList, \
                     const int* facetList, const double* params, int* pOK)
    {
+      return; 
+      /* 
       FILE * fptr;
       #ifdef __MACH__
 	       printf("ERROR: Cannot use MeshSim library on macOS\n");
@@ -224,6 +226,7 @@ extern"C" {
             return;
          }
       #endif
+    */ 
     }
 }
 

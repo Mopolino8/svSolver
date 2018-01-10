@@ -27,44 +27,57 @@ if(SV_INSTALL_LIBS)
   ARCHIVE DESTINATION ${SV_INSTALL_ARCHIVE_DIR} COMPONENT ThirdPartyLibraries)
 endif()
 
-# if(SV_INSTALL_HEADERS)
-if(0)
+if(SV_INSTALL_HEADERS)
+
+  message("Installing headers in parmetis_svfsi")
+
   file(MAKE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/temp)
   set(TEMP_DIR ${CMAKE_CURRENT_SOURCE_DIR}/temp)
   set(HDRS)
   #copy and rename files
-  file(READ "metis.h" METIS_H_TEMP)
+  file(READ "parmetislib.h" METIS_H_TEMP)
 
   set(filename "macros.h")
-  install(FILES ${filename} DESTINATION ${SV_INSTALL_INCLUDE_DIR}/thirdparty/ParMetis-3.2.0 RENAME ParMetis-3.2.0_${filename}
+  install(FILES ${filename} DESTINATION ${SV_INSTALL_INCLUDE_DIR}/thirdparty/parmetis_svfsi RENAME parmetis_svfsi_${filename}
     COMPONENT ThirdPartyHeaders)
-  string(REGEX REPLACE ${filename} metis_${filename} METIS_H_TEMP ${METIS_H_TEMP})
+  string(REGEX REPLACE ${filename} parmetis_svfsi_${filename} METIS_H_TEMP ${METIS_H_TEMP})
 
   set(filename "defs.h")
   file(COPY ${filename} DESTINATION ${TEMP_DIR})
   file(RENAME ${TEMP_DIR}/${filename}
        ${TEMP_DIR}/metis_${filename} )
-  string(REGEX REPLACE ${filename} metis_${filename} METIS_H_TEMP ${METIS_H_TEMP})
+  string(REGEX REPLACE ${filename} parmetis_svfsi_${filename} METIS_H_TEMP ${METIS_H_TEMP})
 
   set(filename "proto.h")
-  install(FILES ${filename} DESTINATION ${SV_INSTALL_INCLUDE_DIR}/thirdparty/ParMetis-3.2.0 RENAME ParMetis-3.2.0_${filename}
+  install(FILES ${filename} DESTINATION ${SV_INSTALL_INCLUDE_DIR}/thirdparty/parmetis_svfsi RENAME parmetis_svfsi_${filename}
     COMPONENT ThirdPartyHeaders)
-  string(REGEX REPLACE ${filename} metis_${filename} METIS_H_TEMP ${METIS_H_TEMP})
+  string(REGEX REPLACE ${filename} parmetis_svfsi_${filename} METIS_H_TEMP ${METIS_H_TEMP})
 
   set(filename "rename.h")
-  install(FILES ${filename} DESTINATION ${SV_INSTALL_INCLUDE_DIR}/thirdparty/ParMetis-3.2.0 RENAME ParMetis-3.2.0_${filename}
+  install(FILES ${filename} DESTINATION ${SV_INSTALL_INCLUDE_DIR}/thirdparty/parmetis_svfsi RENAME parmetis_svfsi_${filename}
     COMPONENT ThirdPartyHeaders)
-  string(REGEX REPLACE ${filename} metis_${filename} METIS_H_TEMP ${METIS_H_TEMP})
+  string(REGEX REPLACE ${filename} parmetis_svfsi_${filename} METIS_H_TEMP ${METIS_H_TEMP})
+
+  set(filename "stdheaders.h")
+  install(FILES ${filename} DESTINATION ${SV_INSTALL_INCLUDE_DIR}/thirdparty/parmetis_svfsi RENAME parmetis_svfsi_${filename}
+    COMPONENT ThirdPartyHeaders)
+  string(REGEX REPLACE ${filename} parmetis_svfsi_${filename} METIS_H_TEMP ${METIS_H_TEMP})
 
   set(filename "struct.h")
-  install(FILES ${filename} DESTINATION ${SV_INSTALL_INCLUDE_DIR}/thirdparty/ParMetis-3.2.0 RENAME ParMetis-3.2.0_${filename}
+  install(FILES ${filename} DESTINATION ${SV_INSTALL_INCLUDE_DIR}/thirdparty/parmetis_svfsi RENAME parmetis_svfsi_${filename}
     COMPONENT ThirdPartyHeaders)
-  string(REGEX REPLACE ${filename} metis_${filename} METIS_H_TEMP ${METIS_H_TEMP})
+  string(REGEX REPLACE ${filename} parmetis_svfsi_${filename} METIS_H_TEMP ${METIS_H_TEMP})
 
-  set(filename ${TEMP_DIR}/metis.h)
-  file(WRITE ${filename} ${METIS_H_TEMP})
-  install(FILES ${filename} DESTINATION ${SV_INSTALL_INCLUDE_DIR}/thirdparty/ParMetis-3.2.0
+  set(filename "parmetis.h")
+  install(FILES ${filename} DESTINATION ${SV_INSTALL_INCLUDE_DIR}/thirdparty/parmetis_svfsi RENAME parmetis_svfsi_${filename}
     COMPONENT ThirdPartyHeaders)
+  string(REGEX REPLACE ${filename} parmetis_svfsi_${filename} METIS_H_TEMP ${METIS_H_TEMP})
+
+  set(filename ${TEMP_DIR}/parmetislib.h)
+  file(WRITE ${filename} ${METIS_H_TEMP})
+  install(FILES ${filename} DESTINATION ${SV_INSTALL_INCLUDE_DIR}/thirdparty/parmetis_svfsi
+    COMPONENT ThirdPartyHeaders)
+
 endif()
 
 

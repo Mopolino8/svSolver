@@ -99,6 +99,8 @@ set(SV_POSTSOLVER_EXE "svpost")
 #-----------------------------------------------------------------------------
 # Set EXE names for the svFSI
 set(SV_SVFSI_EXE "svFSI")
+message("MOVE this call to set and get macros to work")
+set(SV_LIB_SVMEMLS_NAME "_MemLS")
 #-----------------------------------------------------------------------------
 
 

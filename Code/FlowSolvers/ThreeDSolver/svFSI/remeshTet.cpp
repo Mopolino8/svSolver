@@ -1,4 +1,4 @@
-    #include "tetgen.h"
+    // #include "tetgen.h"
     #include <iostream>
     #include <stdio.h>
     #include <stdlib.h>
@@ -11,7 +11,8 @@
          int optimLevel;
          int optimScheme;
          tetOptions();
-         double maxTetVol(double r) {return (pow(r,3)/(6.0*sqrt(2)));}
+         // double maxTetVol(double r) {return (pow(r,3)/(6.0*sqrt(2)));}
+         double maxTetVol(double r) {return 1.0/0.0;} 
    };
                
    tetOptions::tetOptions () {
@@ -27,6 +28,9 @@
       void remesh3d_tetgen_(const int* nPoints, const int* nFacets, const double* pointList, \
                        const int* facetList, const double* params, int* pOK)
       {
+
+         return; 
+         /*
          tetgenio in, out;
          tetgenio::facet *f;
          tetgenio::polygon *p;
@@ -94,6 +98,6 @@
          out.save_nodes(fname);
          out.save_elements(fname);
          
-         return;
+         return;*/ 
       }
    }
