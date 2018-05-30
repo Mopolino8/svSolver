@@ -92,11 +92,10 @@ set(F90SRCS vtkComMod.f90
 # try this if problems with f90 
 # F90SRCS
 
-set(CSRCS split.c 
+set(CSRCS SPLIT.c 
           vtkZpipe.c)
 
-set(CXXSRCS remeshTet.cpp 
-            remeshSim.cpp)
+set(CXXSRCS remeshTet.cpp)
 
 
 simvascular_add_executable(${SV_SVFSI_EXE}
@@ -109,7 +108,7 @@ simvascular_add_executable(${SV_SVFSI_EXE}
   INSTALL_COMP CoreExecutables
   INSTALL_DESTINATION ${SV_INSTALL_RUNTIME_DIR})
 
-set(LINKER_FLAGS_LOCAL_SVFSI "-lblas -llapack -lc++ -lz")
+set(LINKER_FLAGS_LOCAL_SVFSI "-lblas -llapack -lstdc++ -lz")
 
 message("before linker add in svFSI, SV_LIB_SVMEMLS_NAME = " ${SV_LIB_SVMEMLS_NAME})
 

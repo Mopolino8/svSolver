@@ -87,10 +87,6 @@
                std = " Remeshing <"//CLR(TRIM(msh(iM)%name))//
      2            "> using <"//CLR("Tetgen")//"> library at time "//
      3            STR(rmsh%rTS)
-            ELSE IF (rmsh%method .EQ. RMSH_MESHSIM) THEN
-               std = " Remeshing <"//CLR(TRIM(msh(iM)%name))//
-     2            "> using <"//CLR("Meshsim")//"> library at time "//
-     3            STR(rmsh%rTS)
             ELSE
                err = "Unexpected behavior in Remesher"
             END IF
@@ -485,11 +481,7 @@
          IF (iOK .LT. 0)
      2      err = "Fatal! TetGen returned with error. Check log"
       
-      ELSE IF (rmsh%method .EQ. RMSH_MESHSIM) THEN
-         CALL remesh3d_meshsim(lFa%nNo, lFa%nEl, lFa%x, lFa%IEN, 
-     2      rparams, iOK)
-         IF (iOK .LT. 0)
-     2      err = "Fatal! MeshSim returned with error. Check log"
+
       ELSE
          err = "Unknown remesher choice."
       END IF
@@ -532,77 +524,7 @@
          READ(fid,*) i, lM%x(:,Ac)
       END DO
       CLOSE(fid, STATUS='DELETE')
-
-      IF (rmsh%method .EQ. RMSH_MESHSIM) THEN
-         fTmp%fname  = "new-surf-mesh.ele"
-         fid = fTmp%open()
-         gFa%nNo  = lFa%nNo
-         gFa%nEl  = lFa%nEl
-         gFa%eNoN = lFa%eNoN
-         ALLOCATE(gFa%x(nsd,gFa%nNo))
-         ALLOCATE(gFa%IEN(gFa%eNoN,gFa%nEl))
-         ALLOCATE(gFa%gE(gFa%nEl), gFa%gN(gFa%nNo))
-         gFa%x   = lFa%x
-         gFa%IEN = lFa%IEN
-         gFa%gE  = lFa%gE
-         gFa%gN  = lFa%gN
-         
-         DEALLOCATE(lFa%x, lFa%IEN, lFa%gE, lFa%gN)
-         lFa%nEl = 0
-         DO
-            READ (fid,*,END=113)
-            lFa%nEl = lFa%nEl + 1
-         END DO
- 113     REWIND(fid)
-         dbg = "    Number of face elements after remesh "//STR(lFa%nEl)
-
-         ALLOCATE(lFa%IEN(lFa%eNoN,lFa%nEl))
-         DO e=1, lFa%nEl
-            READ(fid,*) i, lFa%IEN(:,e)
-         END DO
-         CLOSE(fid, STATUS='DELETE')
-
-         ALLOCATE(inclNd(lM%gnNo))
-         lFa%nNo = 0
-         inclNd(:) = 0
-         DO e=1, lFa%nEl
-            DO a=1, lFa%eNoN
-               Ac = lFa%IEN(a,e)
-               IF (inclNd(Ac) .EQ. 0) THEN
-                  lFa%nNo = lFa%nNo + 1
-                  inclNd(Ac) = 1
-               END IF
-            END DO
-         END DO
-         dbg = "    Number of face vertices after remesh "//STR(lFa%nNo)
-
-         IF ( (lFa%nNo.NE.gFa%nNo) .OR. (lFa%nEl.NE.gFa%nEl) ) THEN
-            err = "FATAL: Surface mesh altered after remesh. OLD: "//
-     2      gFa%nNo//" nodes, "//gFa%nEl//" elems; NEW: "//
-     3      lFa%nNo//" nodes, "//lFa%nEl//" elems"
-         END IF
-
-         ALLOCATE(lFa%gN(lFa%nNo))
-         a = 0
-         DO Ac=1, lM%gnNo
-            IF (inclNd(Ac) .NE. 0) THEN
-               a = a + 1
-               lFa%gN(a) = Ac
-            END IF
-         END DO
-
-         ALLOCATE(lFa%x(nsd,lFa%nNo))
-         DO a=1, lFa%nNo
-            Ac = lFa%gN(a)
-            lFa%x(:,a) = lM%x(:,Ac)
-         END DO
-         DEALLOCATE(inclNd)
-         
-         CALL REMAPFACE(gFa, lFa, lM)
-         
-         DEALLOCATE(gFa%x, gFa%IEN, gFa%gE, gFa%gN)
-      END IF
-      
+       
       CALL SELECTELE(lM)
             
       RETURN
