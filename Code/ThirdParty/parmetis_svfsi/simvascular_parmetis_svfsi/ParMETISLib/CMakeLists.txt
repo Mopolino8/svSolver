@@ -1,17 +1,17 @@
 include_directories(./)
 
-set(CSRCS comm.c util.c debug.c setup.c grsetup.c timer.c 
-       node_refine.c initmsection.c 
-       xyzpart.c pspases.c frename.c 
-       iintsort.c iidxsort.c ikeysort.c ikeyvalsort.c 
-       kmetis.c gkmetis.c ometis.c 
-       initpart.c match.c 
-       kwayfm.c kwayrefine.c kwaybalance.c 
-       remap.c stat.c fpqueue.c 
-       ametis.c rmetis.c initbalance.c 
-       mdiffusion.c diffutil.c wave.c 
-       csrmatch.c redomylink.c balancemylink.c 
-       selectq.c akwayfm.c serial.c move.c 
+set(CSRCS comm.c util.c debug.c setup.c grsetup.c timer.c
+       node_refine.c initmsection.c
+       xyzpart.c pspases.c frename.c
+       iintsort.c iidxsort.c ikeysort.c ikeyvalsort.c
+       kmetis.c gkmetis.c ometis.c
+       initpart.c match.c
+       kwayfm.c kwayrefine.c kwaybalance.c
+       remap.c stat.c fpqueue.c
+       ametis.c rmetis.c initbalance.c
+       mdiffusion.c diffutil.c wave.c
+       csrmatch.c redomylink.c balancemylink.c
+       selectq.c akwayfm.c serial.c move.c
        mmetis.c mesh.c memory.c weird.c backcompat.c)
 
 if(SV_USE_THIRDPARTY_SHARED_LIBRARIES)
@@ -19,6 +19,10 @@ if(SV_USE_THIRDPARTY_SHARED_LIBRARIES)
 else()
   add_library(${PARMETIS_SVFSI_LIBRARY_NAME} STATIC ${CSRCS})
 endif()
+
+message("Linking parmetis_svfsi to metis_svfsi")
+message("${PARMETIS_SVFSI_LIBRARY_NAME} ${METIS_SVFSI_LIBRARY_NAME}")
+target_link_libraries(${PARMETIS_SVFSI_LIBRARY_NAME} ${METIS_SVFSI_LIBRARY_NAME})
 
 if(SV_INSTALL_LIBS)
   install(TARGETS ${PARMETIS_SVFSI_LIBRARY_NAME}
@@ -79,5 +83,3 @@ if(SV_INSTALL_HEADERS)
     COMPONENT ThirdPartyHeaders)
 
 endif()
-
-
